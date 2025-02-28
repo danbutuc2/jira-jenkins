@@ -15,13 +15,14 @@ pipeline {
             steps {
                 // Create a virtual environment and install 'jira' package inside it
                 sh 'python3 -m venv venv' // Create virtual environment
-                sh 'source venv/bin/activate && pip install jira' // Install dependencies
+                // Use bash explicitly to activate the virtual environment
+                sh 'bash -c "source venv/bin/activate && pip install jira"' // Install dependencies
             }
         }
         stage('Run Script') {
             steps {
-                // Activate the virtual environment and run the script
-                sh 'source venv/bin/activate && python create_jira_issue.py'
+                // Use bash explicitly to activate the virtual environment and run the script
+                sh 'bash -c "source venv/bin/activate && python create_jira_issue.py"'
             }
         }
     }
