@@ -5,6 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git 'https://github.com/danbutuc2/jira-jenkins.git'
+                credentialsId: 'github-credentials'
             }
         }
         stage('Install Dependencies') {
