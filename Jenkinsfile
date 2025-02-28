@@ -4,10 +4,11 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/danbutuc2/jira-jenkins.git'
-                branch: 'main',
-                credentialsId: 'github-credentials'
-            }
+                git(
+    url: 'https://github.com/danbutuc2/jira-jenkins.git', 
+    branch: 'main',
+    credentialsId: 'github-credentials'
+)
         }
         stage('Install Dependencies') {
             steps {
