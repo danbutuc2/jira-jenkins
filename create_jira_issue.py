@@ -28,7 +28,7 @@ def main():
     parser.add_argument('--jira-user', required=True, help="Jira user email")
     parser.add_argument('--jira-token', required=True, help="Jira API token")
     parser.add_argument('--project-key', default='AUT', help="Jira project key (default: AUT)")
-    parser.add_argument('--summary', default='New issue summary', help="Issue summary")
+    parser.add_argument('--summary', default='Issue deployed from Jenkins - Test', help="Issue summary")
     parser.add_argument('--description', default='Description of the issue', help="Issue description")
     parser.add_argument('--issue-type', default='Task', help="Issue type (default: Task)")
     args = parser.parse_args()
