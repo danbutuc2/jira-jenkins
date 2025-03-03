@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    environment {
+        // Bind Jira credentials to environment variables
+        JIRA_CREDENTIALS = credentials('Jira-Api-Token') // ID from Jenkins credentials
+    }
     stages {
         stage('Clone Repository') {
             steps {
@@ -15,14 +18,18 @@ pipeline {
             steps {
                 // Create a virtual environment and install 'jira' package inside it
                 sh 'python3 -m venv venv' // Create virtual environment
-                // Use bash explicitly to activate the virtual environment
                 sh 'bash -c "source venv/bin/activate && pip install jira"' // Install dependencies
             }
         }
         stage('Run Script') {
             steps {
-                // Use bash explicitly to activate the virtual environment and run the script
-                sh 'bash -c "source venv/bin/activate && python create_jira_issue.py"'
+                // Pass Jira credentials as command-line arguments within the virtual environment
+                sh '''
+                    bash -c "source venv/bin/activate && python create_jira_issue.py \
+                        --jira-url 'https://danbutuc.atlassian.net' \
+                        --jira-user '${JIRA_CREDENTIALS_USR}' \
+                        --jira-token '${JIRA_CREDENTIALS_PSW}'"
+                '''
             }
         }
     }
