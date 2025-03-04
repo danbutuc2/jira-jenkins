@@ -24,7 +24,7 @@ def create_issue(jira, project_key, summary, description, issue_type):
 def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Create a Jira issue")
-    parser.add_argument('--jira-url', required=True, help="Jira server URL (e.g., https://danbutuc.atlassian.net)")
+    parser.add_argument('--jira-url', required=True, help="https://danbutuc.atlassian.net)")
     parser.add_argument('--jira-user', required=True, help="Jira user email")
     parser.add_argument('--jira-token', required=True, help="Jira API token")
     parser.add_argument('--project-key', default='AUT', help="Jira project key (default: AUT)")
